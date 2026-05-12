@@ -14,7 +14,7 @@ app.add_middleware(
 )
 
 #os.environ para despliegue. Descomente cuando ya probó todo local.
-mongo_uri = MongoClient(os.environ["MONGO_URI"])
+client = MongoClient(os.environ["MONGO_URI"])
 # TODO: conectarse al cluster Admonsis  
 client = MongoClient("mongodb://ISIS2304D29202610:LfA4UZoITHoB@157.253.236.88:8087")
 
@@ -49,13 +49,13 @@ def get_eventos(bar_id: int):
 # TODO: implementar GET /bares/{bar_id}/eventos
 # Debe retornar todos los eventos del bar desde la colección 'eventos'
 
-@app.post('/bares/{bar_id}/eventos')
+@app.post('/bares/{bar_id}/eventos')    
 def post_eventos(bar_id: int, datos: dict):
     datos['bar_id'] = bar_id
     datos['fecha']  = datetime.now().isoformat()
     # TODO: completar
     db.eventos.insert_one(datos)
-    return {'mensaje': 'Comentario guardado'}
+    return {'mensaje': 'Evento guardado'}
 
 # TODO: implementar POST /bares/{bar_id}/eventos  
 # Debe insertar el evento en la colección 'eventos'
