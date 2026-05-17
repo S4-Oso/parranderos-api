@@ -30,7 +30,7 @@ def inicio():
 
 @app.get('/bares/{bar_id}/comentarios')
 def get_comentarios(bar_id: int):
-    comentarios = list(db.comentarios.find({"bar:id":bar_id}, {"_id":0}))  # TODO: completar
+    comentarios = list(db.comentarios.find({"bar_id":bar_id}, {"_id":0}))  # TODO: completar
     return comentarios
 
 @app.post('/bares/{bar_id}/comentarios')
@@ -44,7 +44,7 @@ def post_comentario(bar_id: int, datos: dict):
 
 @app.get('/bares/{bar_id}/eventos')
 def get_eventos(bar_id: int):
-    eventos = list(db.eventos.find({"bar:id":bar_id}, {"_id":0}))
+    eventos = list(db.eventos.find({"bar_id":bar_id}, {"_id":0}))
     return eventos
 # TODO: implementar GET /bares/{bar_id}/eventos
 # Debe retornar todos los eventos del bar desde la colección 'eventos'
